@@ -31,3 +31,9 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("✅ Prompt copied to clipboard!");
 }
+function copyPrompt() {
+  const result = document.getElementById("result");
+  result.select();
+  document.execCommand("copy");
+  alert("✅ Prompt copied to clipboard!");
+}
