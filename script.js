@@ -1,46 +1,64 @@
 function generatePrompt() {
   const inputRaw = document.getElementById("userInput").value.trim();
-  const input = inputRaw.toLowerCase();
   const output = document.getElementById("result");
 
   if (!inputRaw) {
-    output.value = "⚠️ Please type what you want a prompt for.";
+    output.value = "⚠️ Please enter what kind of prompt you need.";
     return;
   }
 
-  let prompt = "";
+  const userIntent = classifyIntent(inputRaw.toLowerCase());
 
-  // BLOG IDEA GENERATION
-  if (input.includes("blog ideas") || input.includes("blogging ideas")) {
-    prompt = `Create a list of 10 unique blog topics tailored for: "${inputRaw}". Each idea should be specific, practical, and highly relevant. Include a 1–2 sentence explanation under each to help guide the writer. Avoid generic advice — keep it niche, useful, and original.`;
-  }
+  const prompt = `
+Act like an expert ${userIntent.persona}.
+Your job is to fulfill the following user request with a detailed, professional, and well-structured response.
 
-  // BLOG POST WRITING
-  else if (input.includes("blog") || input.includes("article")) {
-    prompt = `Write a full blog post based on the topic: "${inputRaw}". Begin with a powerful introduction, structure your content with 3–5 subheadings, and end with a helpful conclusion. Keep the tone engaging, informative, and suited to a youth audience.`;
-  }
+Objective:
+${userIntent.objective}
 
-  // STORY WRITING
-  else if (input.includes("story")) {
-    prompt = `Write a powerful fictional story based on: "${inputRaw}". Include well-developed characters, conflict, and a twist ending. The story should have emotional depth and a realistic setting. Avoid clichés and be creative.`;
-  }
+Task:
+"${inputRaw}"
 
-  // SPORTS PREDICTION
-  else if (
-    input.includes("football") ||
-    input.includes("match") ||
-    input.includes("sport") ||
-    input.includes("prediction")
-  ) {
-    prompt = `Analyze and predict the outcome of this match: "${inputRaw}". Consider recent form, key player stats, injuries, and team motivation. Deliver your final score prediction and goal scorers if relevant. Make it sound like a real sports analyst.`;
-  }
+Instructions:
+1. Understand the user's goal from the input.
+2. Analyze and infer implicit needs or expected outcome.
+3. Follow a step-by-step reasoning process to deliver the most accurate and helpful response.
+4. If relevant, include real-world examples, formatting (markdown, lists, bullet points, or headings), or expert-level vocabulary.
+5. Maintain a professional tone and format your answer cleanly.
 
-  // EVERYTHING ELSE
-  else {
-    prompt = `Create a complete prompt for this task: "${inputRaw}". It should be direct, creative, and ready to use in an AI tool like ChatGPT or Claude. Focus on making it clear, detailed, and useful.`;
-  }
+Take a deep breath and work on this problem step-by-step.
+  `.trim();
 
   output.value = prompt;
+}
+
+function classifyIntent(input) {
+  if (input.includes("write") || input.includes("email") || input.includes("copy")) {
+    return {
+      persona: "copywriter or communication specialist",
+      objective: "Craft compelling, effective, and audience-tailored written content",
+    };
+  } else if (input.includes("code") || input.includes("build") || input.includes("function")) {
+    return {
+      persona: "software developer and code documentation expert",
+      objective: "Write clear, well-commented code and explanations tailored to the specified problem",
+    };
+  } else if (input.includes("summarize") || input.includes("condense") || input.includes("highlight")) {
+    return {
+      persona: "editor and summarization expert",
+      objective: "Create concise and information-rich summaries",
+    };
+  } else if (input.includes("plan") || input.includes("schedule") || input.includes("strategy")) {
+    return {
+      persona: "project manager and strategic planner",
+      objective: "Generate a thorough and actionable plan or roadmap",
+    };
+  } else {
+    return {
+      persona: "prompt engineer and AI reasoning expert",
+      objective: "Turn abstract ideas into clear, structured prompts for maximum clarity and performance",
+    };
+  }
 }
 
 function copyPrompt() {
