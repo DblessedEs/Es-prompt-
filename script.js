@@ -7,7 +7,6 @@ function generatePrompt() {
     return;
   }
 
-  // Build an optimized prompt based on user input
   const prompt = `
 Act like a professional prompt engineer.
 
@@ -21,6 +20,14 @@ Here is the user's request:
 Write a professional prompt that gets ChatGPT to deliver a long, specific, creative, and expert-level response.
 
 Take a deep breath and work on this problem step-by-step.
-`.trim();
+  `.trim();
 
   output.value = prompt;
+}
+
+function copyPrompt() {
+  const result = document.getElementById("result");
+  result.select();
+  document.execCommand("copy");
+  alert("✅ Prompt copied to clipboard!");
+}
