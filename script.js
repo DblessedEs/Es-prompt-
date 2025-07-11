@@ -1,42 +1,36 @@
-function showTab(tabId) {
-  const tabs = document.querySelectorAll('.tab');
-  const links = document.querySelectorAll('nav a');
-  tabs.forEach(tab => tab.classList.remove('active'));
-  links.forEach(link => link.classList.remove('active-link'));
-
-  document.getElementById(tabId).classList.add('active');
-  event.target.classList.add('active-link');
-}
-
 function generatePrompt() {
   const inputRaw = document.getElementById("userInput").value.trim();
   const input = inputRaw.toLowerCase();
   const output = document.getElementById("result");
 
-  if (!input) {
-    output.value = "⚠️ Please enter what kind of prompt you want.";
+  if (!inputRaw) {
+    output.value = "⚠️ Please type what you want a prompt for.";
     return;
   }
 
-  let prompt = `Write a high-quality, complete prompt for this task: "${inputRaw}".`;
+  let prompt = "";
 
-  // 📝 Add blog-style rules
-  if (input.includes("blog")) {
-    prompt += ` The prompt should be in human tone, contain no plagiarism, and be 0% AI-detectable.`;
+  if (input.includes("blog") || input.includes("article")) {
+    prompt = `Write a complete blog post about "${inputRaw}". Start with an engaging introduction, break down ideas into clear sections, and end with a practical conclusion. Ensure the content is unique and plagiarism-free.`;
   }
 
-  // ⚽ Add sports-style rules
-  if (
-    input.includes("football") ||
-    input.includes("match") ||
+  else if (
+    input.includes("sport") ||
     input.includes("prediction") ||
-    input.includes("sport")
+    input.includes("football") ||
+    input.includes("match")
   ) {
-    prompt += ` Include a confidence level in percentage (e.g. 85%).`;
+    prompt = `Predict the outcome of "${inputRaw}". Include key player stats, recent form, team news, and a final prediction. Keep it concise and focused on facts.`;
   }
 
-  // ✅ Final formatting
-  prompt += ` Make it clear, actionable, and optimized for tools like ChatGPT.`;
+  else if (input.includes("story")) {
+    prompt = `Write a compelling story based on the idea: "${inputRaw}". Include strong characters, clear conflict, and a powerful ending. Make the story creative and original.`;
+  }
+
+  else {
+    // General fallback prompt
+    prompt = `Create a detailed and creative AI prompt for the following task: "${inputRaw}". Make it clear, structured, and effective.`;
+  }
 
   output.value = prompt;
 }
