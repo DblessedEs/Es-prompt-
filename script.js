@@ -31,9 +31,14 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("✅ Prompt copied to clipboard!");
 }
-function copyPrompt() {
-  const result = document.getElementById("result");
-  result.select();
-  document.execCommand("copy");
-  alert("✅ Prompt copied to clipboard!");
+function showtab(tabId) {
+  // Hide all tab content
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.style.display = 'none');
+
+  // Show the selected tab
+  const selectedTab = document.getElementById(tabId);
+  if (selectedTab) {
+    selectedTab.style.display = 'block';
+  }
 }
