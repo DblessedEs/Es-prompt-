@@ -1,13 +1,110 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Esthy Prompt Generator - Modern React App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Esthy Prompt Generator</title>
+</head>
+<body>
+
+  <header>
+    <h1>✨ Esthy Prompt Generator</h1>
+    <p>Create high-quality AI prompts for any task.</p>
+  </header>
+
+  <nav>
+    <a onclick="showTab('promptTab')" class="active-link">Prompt</a>
+    <a onclick="showTab('tipsTab')">Prompt Tips</a>
+    <a onclick="showTab('todayTab')">Top Tip</a>
+    <a onclick="showTab('disclaimerTab')">Disclaimer</a>
+    <a onclick="showTab('termsTab')">Terms</a>
+  </nav>
+
+  <!-- Prompt Generator Tab -->
+  <div class="tab active" id="promptTab">
+    <div class="card">
+      <label for="userInput">Describe what you want to generate:</label>
+      <input type="text" id="userInput" placeholder="e.g. Sales copy for a perfume brand" />
+      <button onclick="generatePrompt()">🎯 Generate Prompt</button>
+      <textarea id="result" placeholder="Your high-quality prompt will appear here..."></textarea>
+      <button onclick="copyPrompt()">📋 Copy Prompt</button>
+    </div>
+  </div>
+
+  <!-- Prompt Tips Tab -->
+  <div class="tab" id="tipsTab">
+    <div class="card">
+      <h3>💡 Expert Prompt Writing Tips</h3>
+      <ul>
+        <li><strong>Be Specific:</strong> Add product, style, and goal in the prompt.</li>
+        <li><strong>State the Format:</strong> Blog post, ad, reply, etc.</li>
+        <li><strong>Include Tone:</strong> Persuasive, casual, formal, funny.</li>
+        <li><strong>Define Audience:</strong> Gen Z, marketers, parents, students.</li>
+        <li><strong>Structure It:</strong> Suggest intro, bullet points, and CTA.</li>
+        <li><strong>Use Limits:</strong> Word count, examples, or style rules.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Today's Top Tip -->
+  <div class="tab" id="todayTab">
+    <div class="card">
+      <h3>🔥 Today's Featured Prompt</h3>
+      <p>
+        Write an apology email to a customer whose product arrived 3 days late. 
+        Be empathetic, professional, and offer a discount as a solution.
+      </p>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="tab" id="disclaimerTab">
+    <div class="card">
+      <h3>⚠️ Disclaimer</h3>
+      <p>
+        Esthy Prompt Generator helps users craft prompts for AI tools. All prompts are generated based on user input. 
+        The developer is not liable for the accuracy, legality, or application of generated prompts. Please review and edit prompts responsibly.
+      </p>
+    </div>
+  </div>
+
+  <!-- Terms -->
+  <div class="tab" id="termsTab">
+    <div class="card">
+      <h3>📜 Terms & Conditions</h3>
+      <p>
+        By using this tool, you agree to:
+        <ul>
+          <li>Use the app ethically and responsibly.</li>
+          <li>Not generate harmful, illegal, or deceptive content.</li>
+          <li>Avoid entering personal or sensitive data.</li>
+          <li>Abide by updates to these terms as they occur.</li>
+        </ul>
+        This app is provided as-is without warranties or guarantees.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+  <p>&copy; 2025 Esthy Prompt Generator | Built for creators</p>
+  <div class="footer-links">
+    <a href="https://facebook.com/YourPage" target="_blank">Facebook</a> |
+    <a href="https://x.com/YourHandle" target="_blank">X</a> |
+    <a href="https://yourwebsite.com" target="_blank">Website</a>
+  </div>
+  </footer>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
 </html>
